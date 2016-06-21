@@ -1,2 +1,0 @@
-# e-store
-E-Store
