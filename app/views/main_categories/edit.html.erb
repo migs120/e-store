@@ -1,2 +1,8 @@
-<h1>MainCategories#edit</h1>
-<p>Find me in app/views/main_categories/edit.html.erb</p>
+<%= form_for MainCategory.find(params[:id]), :url => {:controller => 'main_categories', :action => 'update',  :method => 'post'} do |f| %>
+<%= f.label :title%>
+<%= f.text_field :title, class: 'form-control', placeholder: '' %>
+<%= f.label :body %>
+<%= f.text_area :body, rows: 4, class: 'form-control', placeholder: "Enter post body" %>
+<%= f.submit "Save", class: 'btn btn-success' %>
+
+<%end%>

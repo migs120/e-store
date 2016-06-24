@@ -1,2 +1,5 @@
-<h1>MainCategories#show</h1>
-<p>Find me in app/views/main_categories/show.html.erb</p>
+
+<% MainCategory.where(id: params[:id]).each do |this|%>
+<h3><%= link_to this.title, edit_main_category_path(params[:id])%></h3>
+<p><%= this.body%></p>
+<%end%>
