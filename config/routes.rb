@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-#in_categories/index'
-
- # get 'main_categories/show'
-
- # get 'main_categories/new'
-
- # get 'main_categories/edit'
-resources :main_categories
 #   get 'sites/index'
 
 #   get 'sites/show'

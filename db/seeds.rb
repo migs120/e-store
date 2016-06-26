@@ -1,17 +1,17 @@
  require 'faker'
 
  # Create Users
-# 5.times do
- #  user = User.new(
-  #   name:     Faker::Name.name,
-   #  email:    Faker::Internet.email,
-    # password: "11223344",
-    # role: "member"
-   #)
-   #user.skip_confirmation!
-   #user.save!
- #end
- #users = User.all
+ 5.times do
+   user = User.new(
+     name:     Faker::Name.name,
+     email:    Faker::Internet.email,
+     password: "11223344",
+     role: "member"
+   )
+   user.skip_confirmation!
+   user.save!
+ end
+ users = User.all
  
  # Note: by calling `User.new` instead of `create`,
  # we create an instance of User which isn't immediately saved to the database.
