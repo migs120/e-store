@@ -11,23 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622164320) do
-
-  create_table "main_categories", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "main_category_pics", force: true do |t|
-    t.string   "pic_url"
-    t.integer  "maincategory_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "main_category_pics", ["maincategory_id"], name: "index_main_category_pics_on_maincategory_id"
+ActiveRecord::Schema.define(version: 20141212004050) do
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
@@ -50,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160622164320) do
     t.string   "role"
   end
 
-  add_index "users", ["name"], name: "index_users_on_name"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
