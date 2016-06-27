@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources  :m_category
+
+ 
+
 #   get 'sites/index'
 
 #   get 'sites/show'
