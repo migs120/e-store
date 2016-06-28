@@ -9,7 +9,7 @@ class MCategoryController < ApplicationController
   end
   
    def create
-    MCategory.create(title: params[:m_category][:title] ,body: params[:m_category][:body])
+    MCategory.create(title: params[:m_category][:title] ,body: params[:m_category][:body], avatar: params[:m_category][:avatar])
     redirect_to root_path
   end
 
