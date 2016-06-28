@@ -1,2 +1,4 @@
-<h1>MCategory#show</h1>
-<p>Find me in app/views/m_category/show.html.erb</p>
+<% MCategory.where(id: params[:id]).each do |this|%>
+<h3><%= link_to this.title, edit_m_category_path(params[:id])%></h3>
+<p><%= this.body%></p>
+<%end%>
