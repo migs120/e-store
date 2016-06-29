@@ -2,4 +2,7 @@
 <% MainCategory.where(id: params[:id]).each do |this|%>
 <h3><%= link_to this.title, edit_main_category_path(params[:id])%></h3>
 <p><%= this.body%></p>
+  <% this.main_category_pics.each do |pic|%>
+  <img src="<%= pic.pic_url.url%>" style='height:100px; width:100px;'>
+  <%end%>
 <%end%>
