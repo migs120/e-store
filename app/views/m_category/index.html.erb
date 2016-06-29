@@ -2,4 +2,5 @@
 <% MCategory.all.each do |cat|%>
 <br><h3><%= link_to cat.title, m_category_path(cat.id)%></h3>
 <p><%= cat.body%></p>
+<img src="<%= cat.avatar.url%>" style="hight:100px; width:100px;">
 <%end%><br>

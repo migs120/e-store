@@ -1,4 +1,5 @@
 <% MCategory.where(id: params[:id]).each do |this|%>
 <h3><%= link_to this.title, edit_m_category_path(params[:id])%></h3>
 <p><%= this.body%></p>
+<img src="<%= this.avatar.url%>" style="width:100px; height:100px;">
 <%end%>
