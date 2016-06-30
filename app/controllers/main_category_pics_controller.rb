@@ -15,4 +15,10 @@ class MainCategoryPicsController < ApplicationController
 
   def edit
   end
+  
+  def update
+    MainCategoryPic.find(params[:id]).update_attributes(pic_url: params[:main_category_pic][:pic_url] )
+    redirect_to main_category_path(MainCategoryPic.find(params[:id]).main_category_id )
+  end
+  
 end

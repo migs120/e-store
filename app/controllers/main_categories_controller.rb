@@ -27,6 +27,12 @@ class MainCategoriesController < ApplicationController
     redirect_to main_category_path(params[:id])
   end
   
+  def destroy
+    if MainCategory.find(params[:id]).destroy
+    flash[:notice] = 'A Category was destoryed'
+    end
+    redirect_to root_path
+  end
   
   
   
