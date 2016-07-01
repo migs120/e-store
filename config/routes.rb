@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources  :m_category
 
+resources :main_categories do
+  resources :main_category_pics
+end
+  
  
+  
 
 #   get 'sites/index'
 
@@ -23,7 +27,7 @@ Rails.application.routes.draw do
   
   get 'about' => 'welcome#about'
   
-  root to: 'welcome#index'
+  root to: 'main_categories#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

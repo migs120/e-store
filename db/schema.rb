@@ -11,14 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626235240) do
+ActiveRecord::Schema.define(version: 20160628231005) do
 
   create_table "m_categories", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
+
+  create_table "main_categories", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "main_category_pics", force: true do |t|
+    t.string   "pic_url"
+    t.integer  "main_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "main_category_pics", ["main_category_id"], name: "index_main_category_pics_on_main_category_id"
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false
