@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
+
 resources :main_categories do
   resources :main_category_pics
 end
   
- 
+resources :main_categories do
+  resources :items do 
+    resources :item_pics
+  end 
+end
   
 
 #   get 'sites/index'

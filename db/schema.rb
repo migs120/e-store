@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628231005) do
+ActiveRecord::Schema.define(version: 20160702224436) do
+
+  create_table "item_pics", force: true do |t|
+    t.string   "pic_url"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_pics", ["item_id"], name: "index_item_pics_on_item_id"
+
+  create_table "items", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "main_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["main_category_id"], name: "index_items_on_main_category_id"
 
   create_table "m_categories", force: true do |t|
     t.string   "title"
