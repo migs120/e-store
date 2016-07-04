@@ -1,2 +1,8 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<% @item = Item.find(params[:id])%>
+<h3><%= @item.title %></h3>
+<p><%= @item.body %></p>
+<%if @item.item_pics.any?%>
+<%@item.item_pics.each do |pic|%>
+<img src="<%= pic.pic_url_url%>" style="height:150px; width:150px;">
+<% end%>
+<%end %>

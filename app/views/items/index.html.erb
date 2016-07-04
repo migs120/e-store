@@ -1,2 +1,12 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<% @items = MainCategory.find(params[:main_category_id]).items%>
+
+<% @items.each do |item|%>
+
+  <h3><%= item.title %></h3>
+  <p><%= item.body %></p>
+  <% if item.item_pics.any?%>
+    <img scr="<%= item.item_pics.first.pic_url.url%>" style="height:100px; width:100px;">
+    <%end%>
+  <button><%= link_to "Add Pics", new_main_category_item_item_pic_path(item.main_category_id, item.id)%></button>
+
+<%end%>

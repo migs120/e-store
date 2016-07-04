@@ -9,7 +9,7 @@
 <%end%>
 <br>
 <p>Click on Picture to Edit Picture</p>
-<%if @MCategory.main_category_pics.first.pic_url_url%>
+<%if @MCategory.main_category_pics.first%>
       <%@MCategory.main_category_pics.each do |pic|%>
         <%= link_to edit_main_category_main_category_pic_path(@MCategory.id, pic.id) do%>
        <img src="<%= pic.pic_url_url%>" style='height:100px; width:100px;'>
