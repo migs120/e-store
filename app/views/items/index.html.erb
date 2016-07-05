@@ -6,7 +6,10 @@
   <p><%= item.body %></p>
   <% if item.item_pics.any?%>
     <img scr="<%= item.item_pics.first.pic_url.url%>" style="height:100px; width:100px;">
+<%=item.item_pics.first.pic_url.url %>
     <%end%>
   <button><%= link_to "Add Pics", new_main_category_item_item_pic_path(item.main_category_id, item.id)%></button>
 
 <%end%>
+
+<button><%= link_to "Add Item", '#' %></button>
