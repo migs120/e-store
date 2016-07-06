@@ -15,4 +15,17 @@ class ItemPicsController < ApplicationController
 
   def edit
   end
+  
+  def update
+    ItemPic.find(params[:id]).update_attributes(pic_url: params[:item_pic][:pic_url] )
+    redirect_to main_category_item_path(params[:main_category_id], params[:item_id] )
+  end  
+  
+  def destroy
+    if ItemPic.find(params[:id]).destroy
+    flash[:notice] = 'A Picture was destoryed'
+    end
+    redirect_to main_category_item_path(params[:main_category_id], params[:item_id])
+  end  
+  
 end

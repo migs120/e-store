@@ -16,4 +16,19 @@ class ItemsController < ApplicationController
 
   def edit
   end
+  
+  def update
+    Item.find(params[:id]).update_attributes(title: params[:item][:title] ,body: params[:item][:body] )
+    redirect_to main_category_item_path(Item.find(params[:id]).main_category_id, Item.find(params[:id]).id )
+  end
+
+  def destroy
+    if Item.find(params[:id]).destroy
+    flash[:notice] = 'An Item was destoryed'
+    end
+    redirect_to root_path
+  end  
+  
+  
+  
 end

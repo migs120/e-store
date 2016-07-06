@@ -2,7 +2,7 @@
 <h3><%= link_to "Back to Categorys", root_path%><h3>
 <% @items.each do |item|%>
 
-  <h3><%= item.title %></h3>
+  <h4><%= link_to item.title, main_category_item_path(item.main_category_id, item.id)  %></h4>
   <p><%= item.body %></p>
   <% if item.item_pics.any?%>
 <img src="<%= item.item_pics.first.pic_url.url%>" style='height:100px; width:100px;'>

@@ -6,6 +6,7 @@
  <%if category.main_category_pics.first%>
   <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
  <%end%>
+<br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
 <%end%>
 <br><br>
 <button><%= link_to 'Make New Category', new_main_category_path%></button>
