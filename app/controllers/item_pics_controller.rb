@@ -9,7 +9,8 @@ class ItemPicsController < ApplicationController
   end
   
   def create
-    ItemPic.create(pic_url: params[:item_pic][:pic_url], item_id: params[:item_id] )
+    
+    Item.find(params[:item_id]).item_pics.create(params.require(:item_pic).permit(:pic_url))
     redirect_to main_category_item_path(params[:main_category_id], params[:item_id])
   end  
 
@@ -17,7 +18,8 @@ class ItemPicsController < ApplicationController
   end
   
   def update
-    ItemPic.find(params[:id]).update_attributes(pic_url: params[:item_pic][:pic_url] )
+   
+    ItemPic.find(params[:id]).update_attributes(params.require(:item_pic).permit(:pic_url) )
     redirect_to main_category_item_path(params[:main_category_id], params[:item_id] )
   end  
   

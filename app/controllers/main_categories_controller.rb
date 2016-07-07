@@ -9,7 +9,7 @@ class MainCategoriesController < ApplicationController
   end
   
   def create
-    MainCategory.create(title: params[:main_category][:title] ,body: params[:main_category][:body])
+    MainCategory.create(params.require(:main_category).permit(:title,:body ) )
     redirect_to main_categories_path
   end
 
@@ -23,7 +23,7 @@ class MainCategoriesController < ApplicationController
   end
   
   def update
-    MainCategory.find(params[:id]).update_attributes(title: params[:main_category][:title] ,body: params[:main_category][:body] )
+    MainCategory.find(params[:id]).update_attributes(params.require(:main_category).permit(:title, :body) )
     redirect_to main_category_path(params[:id])
   end
   

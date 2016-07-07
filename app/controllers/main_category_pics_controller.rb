@@ -9,7 +9,8 @@ class MainCategoryPicsController < ApplicationController
   end
   
   def create
-    MainCategoryPic.create(pic_url: params[:main_category_pic][:pic_url], main_category_id: params[:main_category_id] )
+   
+    MainCategory.find(params[:main_category_id]).main_category_pics.create(params.require(:main_category_pic).permit(:pic_url))
     redirect_to root_path
   end
 
@@ -17,7 +18,8 @@ class MainCategoryPicsController < ApplicationController
   end
   
   def update
-    MainCategoryPic.find(params[:id]).update_attributes(pic_url: params[:main_category_pic][:pic_url] )
+   
+    MainCategoryPic.find(params[:id]).update_attributes(params.require(:main_category_pic).permit(:pic_url) )
     redirect_to main_category_path(MainCategoryPic.find(params[:id]).main_category_id )
   end
   

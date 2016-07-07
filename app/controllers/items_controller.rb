@@ -9,7 +9,8 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.create(title: params[:item][:title] ,body: params[:item][:body], main_category_id: params[:main_category_id])
+ 
+    @item = MainCategory.find(params[:main_category_id]).items.create(params.require(:item).permit(:title, :body))
     @item_id = @item.id
     redirect_to main_category_item_path(@item.main_category_id,@item.id)
   end
@@ -18,7 +19,8 @@ class ItemsController < ApplicationController
   end
   
   def update
-    Item.find(params[:id]).update_attributes(title: params[:item][:title] ,body: params[:item][:body] )
+    
+    Item.find(params[:id]).update_attributes(params.require(:item).permit(:title, :body) )
     redirect_to main_category_item_path(Item.find(params[:id]).main_category_id, Item.find(params[:id]).id )
   end
 
