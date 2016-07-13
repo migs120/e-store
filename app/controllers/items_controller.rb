@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  respond_to :html, :js
   def index
     @items = Item.all
     @order_item = current_order.order_items.new
