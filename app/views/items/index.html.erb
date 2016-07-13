@@ -14,3 +14,14 @@
 <%end%>
 
 <br><br><button><%= link_to "Add Item", new_main_category_item_path(params[:main_category_id]) %></button>
+  
+  
+  <h3 class="text-center">Products for Sale</h3>
+
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <% @items.each do |item| %>
+      <%= render "item_row", item: item, order_item: @order_item %>
+    <% end %>
+  </div>
+</div>
