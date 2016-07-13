@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160702224436) do
+ActiveRecord::Schema.define(version: 20160713025644) do
 
   create_table "item_pics", force: true do |t|
     t.string   "pic_url"
@@ -29,18 +28,12 @@ ActiveRecord::Schema.define(version: 20160702224436) do
     t.integer  "main_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.decimal  "price"
+    t.boolean  "active"
   end
 
   add_index "items", ["main_category_id"], name: "index_items_on_main_category_id"
-
-
-  create_table "m_categories", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar"
-  end
 
   create_table "main_categories", force: true do |t|
     t.string   "title"
@@ -57,6 +50,37 @@ ActiveRecord::Schema.define(version: 20160702224436) do
   end
 
   add_index "main_category_pics", ["main_category_id"], name: "index_main_category_pics_on_main_category_id"
+
+  create_table "order_items", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "order_id"
+    t.decimal  "unit_price",  precision: 12, scale: 3
+    t.integer  "quantity"
+    t.decimal  "total_price", precision: 12, scale: 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id"
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+
+  create_table "order_statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.decimal  "subtotal",        precision: 12, scale: 3
+    t.decimal  "tax",             precision: 12, scale: 3
+    t.decimal  "shipping",        precision: 12, scale: 3
+    t.decimal  "total",           precision: 12, scale: 3
+    t.integer  "order_status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id"
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "", null: false

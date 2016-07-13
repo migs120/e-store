@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all
+    @order_item = current_order.order_items.new
   end
 
   def show
@@ -10,7 +12,7 @@ class ItemsController < ApplicationController
   
   def create
  
-    @item = MainCategory.find(params[:main_category_id]).items.create(params.require(:item).permit(:title, :body))
+    @item = MainCategory.find(params[:main_category_id]).items.create(params.require(:item).permit(:title, :body, :name, :price))
     @item_id = @item.id
     redirect_to main_category_item_path(@item.main_category_id,@item.id)
   end
@@ -20,7 +22,7 @@ class ItemsController < ApplicationController
   
   def update
     
-    Item.find(params[:id]).update_attributes(params.require(:item).permit(:title, :body) )
+    Item.find(params[:id]).update_attributes(params.require(:item).permit(:title, :body, :name, :price) )
     redirect_to main_category_item_path(Item.find(params[:id]).main_category_id, Item.find(params[:id]).id )
   end
 

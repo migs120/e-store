@@ -4,10 +4,18 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
     before_action :configure_permitted_parameters, if: :devise_controller?
-  
+   helper_method :current_order
    rescue_from Pundit::NotAuthorizedError do |exception|
      redirect_to root_url, alert: exception.message
    end
+  
+  def current_order
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      Order.new
+    end
+  end
  
    protected
  

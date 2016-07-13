@@ -2,7 +2,9 @@
 <h3><%= link_to 'Back to Category Items', main_category_items_path(@item.main_category_id) %><h3>
 
 <h3><%= @item.title %></h3>
+<p>name:<%= @item.name %></p>
 <p><%= @item.body %></p>
+<p>price:<%= @item.price %></p>  
 <%if @item.item_pics.any?%>
 <%@item.item_pics.each do |pic|%>
 <img src="<%= pic.pic_url_url%>" style="height:150px; width:150px;">
