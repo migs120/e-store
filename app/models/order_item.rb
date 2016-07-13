@@ -21,7 +21,7 @@ class OrderItem < ActiveRecord::Base
   end
 
 private
-  def product_present
+  def item_present
     if item.nil?
       errors.add(:item, "is not valid or is not active.")
     end
