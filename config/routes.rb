@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
+resources :order_checkouts
+  #get 'order_checkouts/index'
 
-  get 'order_items/create'
+  #get 'order_checkouts/show'
 
-  get 'order_items/update'
+  #get 'order_checkouts/new'
 
-  get 'order_items/destroy'
+  #get 'order_checkouts/edit'
 
-  get 'carts/show'
+  #get 'order_items/create'
+
+  #get 'order_items/update'
+
+  #get 'order_items/destroy'
+
+  #get 'carts/show'
 
 resources :main_categories do
   resources :main_category_pics
@@ -47,7 +55,7 @@ end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+get "checkout", to: "items#checkout"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
