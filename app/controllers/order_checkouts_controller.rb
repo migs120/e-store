@@ -13,7 +13,7 @@ class OrderCheckoutsController < ApplicationController
   
   def create
   #@order = current_cart.build_order(params[:order])
-  @order = OrderCheckout.create(order_id: current_order.id,
+  @order = OrderCheckout.create(Order_id: current_order.id,
                                 first_name: params[:order_checkout][:first_name],
                                 last_name: params[:order_checkout][:last_name],
                                 card_type: params[:order_checkout][:card_type],
