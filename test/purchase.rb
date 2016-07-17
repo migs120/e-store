@@ -22,16 +22,21 @@ credit_card = ActiveMerchant::Billing::CreditCard.new(
                 :number             => '4032039537963375',
                 :month              => '9',
                 :year               => '2020',
+                #:year               => '1890',
                 :verification_value => '321')
 
 # Validating the card automatically detects the card type
 if credit_card.valid?
   # Capture $10 from the credit card
-  response = gateway.purchase(amount, credit_card, :ip => 'https://ruby-on-rails-122217.nitrousapp.com')
+  response = gateway.purchase(amount, credit_card, :ip => 'https://ruby-on-rails-122217.nitrousapp.com/main_categories')
 
   if response.success?
     puts "Successfully charged $#{sprintf("%.2f", amount / 100)} to the credit card #{credit_card.display_number}"
   else
     raise StandardError, response.message
+    
   end
+  
+  else
+  puts "card is not valid. #{credit_card.errors.full_messages}"
 end

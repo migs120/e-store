@@ -1,6 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+             :login => 'migs432-facilitator_api1.yahoo.com',
+            :password => '9PJ6MNHQ3PBVKAF6',
+            :signature => 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-A8PdR2IyPOHBXahOWws4TsJXKyQG'
+  )
+end
+  
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713025644) do
+ActiveRecord::Schema.define(version: 20160716202336) do
 
   create_table "item_pics", force: true do |t|
     t.string   "pic_url"
@@ -50,6 +50,33 @@ ActiveRecord::Schema.define(version: 20160713025644) do
   end
 
   add_index "main_category_pics", ["main_category_id"], name: "index_main_category_pics_on_main_category_id"
+
+  create_table "order_checkout_transactions", force: true do |t|
+    t.integer  "order_checkout_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_checkout_transactions", ["order_checkout_id"], name: "index_order_checkout_transactions_on_order_checkout_id"
+
+  create_table "order_checkouts", force: true do |t|
+    t.integer  "Order_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_checkouts", ["order_id"], name: "index_order_checkouts_on_Order_id"
 
   create_table "order_items", force: true do |t|
     t.integer  "item_id"

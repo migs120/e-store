@@ -34,6 +34,10 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end  
   
+  def checkout
+    render  "items/checkout"
+  end
+  
   
   
 end
