@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716202336) do
+ActiveRecord::Schema.define(version: 20160718034154) do
 
   create_table "item_pics", force: true do |t|
     t.string   "pic_url"
@@ -74,9 +74,21 @@ ActiveRecord::Schema.define(version: 20160716202336) do
     t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "adress"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "phone"
+    t.text     "instructions"
+    t.string   "bill_name"
+    t.string   "bill_adress"
+    t.string   "bill_city"
+    t.string   "bill_state"
+    t.integer  "bill_zip"
   end
 
-  add_index "order_checkouts", ["order_id"], name: "index_order_checkouts_on_Order_id"
+  add_index "order_checkouts", ["Order_id"], name: "index_order_checkouts_on_Order_id"
 
   create_table "order_items", force: true do |t|
     t.integer  "item_id"

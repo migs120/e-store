@@ -28,12 +28,12 @@ class OrderCheckout < ActiveRecord::Base
     {
       :ip => ip_address,
       :billing_address => {
-        :name     => "Ryan Bates",
-        :address1 => "123 Main St.",
-        :city     => "New York",
-        :state    => "NY",
+        :name     => $params[:order_checkout][:bill_name],
+        :address1 => $params[:order_checkout][:bill_adress],
+        :city     => $params[:order_checkout][:bill_city],
+        :state    => $params[:order_checkout][:bill_state],
         :country  => "US",
-        :zip      => "10001"
+        :zip      => $params[:order_checkout][:bill_zip]
       }
     }
   end

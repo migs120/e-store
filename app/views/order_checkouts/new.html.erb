@@ -2,6 +2,9 @@
  
 
 <%= form_for OrderCheckout.new, :url => {:controller => 'order_checkouts', :action => 'create',  :method => 'post'} do |f| %>
+
+
+<h3>Shipping Adress</h3>
   
   <p>
     <%= f.label :first_name %><br />
@@ -11,6 +14,66 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </p>
+
+ <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+
+ <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+
+ <p>
+    <%= f.label :adress %><br />
+    <%= f.text_field :adress %>
+  </p>
+
+ <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+
+ <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+
+ <p>
+    <%= f.label :zip %><br />
+    <%= f.number_field :zip %>
+  </p>
+
+
+
+
+
+<h3>Billing adress</h3>
+ <p>
+    <%= f.label :bill_name %><br />
+    <%= f.text_field :bill_name %>
+  </p>
+ <p>
+    <%= f.label :bill_adress %><br />
+    <%= f.text_field :bill_adress %>
+  </p>
+
+ <p>
+    <%= f.label :bill_city %><br />
+    <%= f.text_field :bill_city %>
+  </p>
+
+ <p>
+    <%= f.label :bill_state %><br />
+    <%= f.text_field :bill_state %>
+  </p>
+
+ <p>
+    <%= f.label :bill_zip %><br />
+    <%= f.number_field :bill_zip %>
+  </p>
+
   <p>
     <%= f.label :card_type %><br />
     <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
@@ -29,8 +92,8 @@
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
-<%= current_order.inspect%>
-<br><%= current_order.id%>
+<br>
+
 
 
 
