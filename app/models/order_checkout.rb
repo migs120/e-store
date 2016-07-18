@@ -3,8 +3,14 @@ class OrderCheckout < ActiveRecord::Base
   has_many :order_checkout_transactions
   attr_accessor :card_number, :card_verification
   validate :validate_card, :on => :create
-    def purchase
-    response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
+  def purchase
+    response = GATEWAY.purchase(
+                                price_in_cents,
+                                credit_card,
+                                purchase_options
+                              )
+    
+    
     order_checkout_transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
    # cart.update_attribute(:purchased_at, Time.now)  ## this needs to work but dont have a purchased_at attribute in any model
       if response.success?
@@ -13,8 +19,7 @@ class OrderCheckout < ActiveRecord::Base
   end
   
   def price_in_cents
-   # (cart.total_price*100).round
-    Order.last.subtotal*100  ## this is hard coded and also needs to be modified to work
+    ($current_order.subtotal*100).round 
   end
 
   private
@@ -42,26 +47,17 @@ class OrderCheckout < ActiveRecord::Base
   end
   
   def credit_card
+
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
-      ##need this to work original rails cast set up but fails values are not passing from form to this controler corectly
-      ##==================
-     # :type               => card_type,
-      #:number             => card_number,
-      #:verification_value => card_verification,
-      #:month              => card_expires_on.month,
-      #:year               => card_expires_on.year,
-      #:first_name         => first_name,
-      #:last_name          => last_name
+
+                first_name: $params[:order_checkout][:first_name],
+                last_name:$params[:order_checkout][:last_name],
+                number:$params[:order_checkout][:card_number],
+                month: $params[:order_checkout]["card_expires_on(2i)"],
+                year:$params[:order_checkout]["card_expires_on(1i)"],
+                verification_value: $params[:order_checkout][:card_verification]
       
-      ##remove this it works but its hard coded 
-      ##============================
-                :first_name         => 'Bob',
-                :last_name          => 'Bobsen',
-                :number             => '4032039537963375',
-                :month              => '9',
-                :year               => '2020',
-                #:year               => '1890',
-                :verification_value => '321'
+      
    )
   end
   
