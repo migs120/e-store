@@ -41,7 +41,7 @@ class OrderCheckoutsController < ApplicationController
   if @order.save
     if @order.purchase
       clean_params
-      
+      current_order.order_items.destroy_all
       render :action => "success"
     else
       clean_params
@@ -58,6 +58,7 @@ class OrderCheckoutsController < ApplicationController
   def clean_params
     $params = ''
     $current_order = ''
+    
   end
   
   
