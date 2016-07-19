@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718034154) do
+ActiveRecord::Schema.define(version: 20160719021413) do
+
+  create_table "checkout_paid_items", force: true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.integer  "price"
+    t.text     "body"
+    t.integer  "order_checkout_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkout_paid_items", ["order_checkout_id"], name: "index_checkout_paid_items_on_order_checkout_id"
 
   create_table "item_pics", force: true do |t|
     t.string   "pic_url"
@@ -86,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160718034154) do
     t.string   "bill_city"
     t.string   "bill_state"
     t.integer  "bill_zip"
+    t.date     "purchased_at"
   end
 
   add_index "order_checkouts", ["Order_id"], name: "index_order_checkouts_on_Order_id"

@@ -40,6 +40,20 @@ class OrderCheckoutsController < ApplicationController
   @order.ip_address = request.remote_ip
   if @order.save
     if @order.purchase
+      @order.update_attributes(purchased_at: Time.now)
+      
+   #   current_order.order_items.each do |item|
+    #    OrderCheckout.find(@order.id).checkout_paid_items.create(title: item.title, name: item.name, price:item.price, body: item.body)
+    #  end
+      
+       current_order.order_items.each do |item|
+         Item.find(item.item_id) do |itemIn|
+           OrderCheckout.find(@order.id).checkout_paid_items.create(title: itemIn.title, name: itemIn.name, price:itemIn.price, body: itemIn.body)
+          end
+      end
+      
+      
+      
       clean_params
       current_order.order_items.destroy_all
       render :action => "success"
