@@ -1,21 +1,5 @@
 <% @items = MainCategory.find(params[:main_category_id]).items%>
 <h3><%= link_to "Back to Categorys", root_path%><h3>
-<% @items.each do |item|%>
-
-  <h4><%= link_to item.title, main_category_item_path(item.main_category_id, item.id)  %></h4>
-  <p><%= item.body %></p>
-  <% if item.item_pics.any?%>
-<img src="<%= item.item_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
-
-    <%end%>
-  <br><button><%= link_to "Add Pics", new_main_category_item_item_pic_path(item.main_category_id, item.id)%></button>
-  <br><button><%= link_to "Edit Item", edit_main_category_item_path(params[:main_category_id], item.id) %></button>
-
-<%end%>
-
-<br><br><button><%= link_to "Add Item", new_main_category_item_path(params[:main_category_id]) %></button>
-  
-  
   <h3 class="text-center">Products for Sale</h3>
 
 <div class="row">
@@ -24,4 +8,12 @@
       <%= render "item_row", item: item, order_item: @order_item %>
     <% end %>
   </div>
-</div>
+</div>  
+  
+  
+  
+
+
+<br><br><button><%= link_to "Add Item", new_main_category_item_path(params[:main_category_id]) %></button><br><br><br><br>
+  
+  

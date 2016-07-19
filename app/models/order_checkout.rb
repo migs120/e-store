@@ -1,6 +1,7 @@
 class OrderCheckout < ActiveRecord::Base
   belongs_to :order
   has_many :order_checkout_transactions
+  has_many :checkout_paid_items
   attr_accessor :card_number, :card_verification
   validate :validate_card, :on => :create
   def purchase

@@ -56,6 +56,8 @@ end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 get "checkout", to: "items#checkout"
+
+get "purchases", to: "order_checkouts#purchases"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
