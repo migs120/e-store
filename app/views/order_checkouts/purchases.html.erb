@@ -1,0 +1,16 @@
+<h2>purchases.html.erb</h2>
+<% OrderCheckout.all.each do |this|%>
+    <% if this.purchased_at%>
+      <%= this.inspect %><br><br>
+       <%= this.order_checkout_transactions.inspect%>
+<h4>items bought</h4>
+          <%this.checkout_paid_items.each do |item|%>
+          <%= item.inspect%><br><br>
+          <%end%>
+          <br>
+<p>===============================================================================</p>
+    <%end%>
+
+
+
+<%end%>
