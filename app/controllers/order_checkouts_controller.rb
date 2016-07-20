@@ -1,4 +1,6 @@
 class OrderCheckoutsController < ApplicationController
+  respond_to :html, :js
+  
   def index
   end
 
@@ -40,7 +42,7 @@ class OrderCheckoutsController < ApplicationController
   @order.ip_address = request.remote_ip
   if @order.save
     if @order.purchase
-      @order.update_attributes(purchased_at: Time.now)     
+      @order.update_attributes(purchased_at: DateTime.now  )     
        current_order.order_items.each do |item|
          Item.find(item.item_id) do |itemIn|
            OrderCheckout.find(@order.id).checkout_paid_items.create(title: itemIn.title, name: itemIn.name, price:itemIn.price, body: itemIn.body)
@@ -61,6 +63,18 @@ class OrderCheckoutsController < ApplicationController
   
   def purchases
     render "purchases"
+  end
+  
+  def destroy
+  @order_checkout = OrderCheckout.find(params[:id])
+  @order_checkout.update_attributes(paid_shipped_n_done: true)
+
+  end
+
+    def update
+  @order_checkout = OrderCheckout.find(params[:id])
+  @order_checkout.update_attributes(paid_shipped_n_done: true)
+
   end
   
   
