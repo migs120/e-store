@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719021413) do
+ActiveRecord::Schema.define(version: 20160720052409) do
 
   create_table "checkout_paid_items", force: true do |t|
     t.string   "title"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160719021413) do
     t.string   "bill_state"
     t.integer  "bill_zip"
     t.date     "purchased_at"
+    t.boolean  "paid_shipped_n_done"
   end
 
   add_index "order_checkouts", ["Order_id"], name: "index_order_checkouts_on_Order_id"

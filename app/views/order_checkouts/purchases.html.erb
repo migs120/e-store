@@ -1,16 +1,17 @@
 <h2>purchases.html.erb</h2>
 <% OrderCheckout.all.each do |this|%>
-    <% if this.purchased_at%>
-      <%= this.inspect %><br><br>
-       <%= this.order_checkout_transactions.inspect%>
-<h4>items bought</h4>
-          <%this.checkout_paid_items.each do |item|%>
-          <%= item.inspect%><br><br>
-          <%end%>
-          <br>
-<p>===============================================================================</p>
+    <% if this.purchased_at && !this.paid_shipped_n_done %>
+            <div id="order_checkout-<%=this.id%>">
+                 <%= this.inspect %><br><br>
+                 <%= this.order_checkout_transactions.inspect%>
+                <h4>items bought</h4>
+                     <%this.checkout_paid_items.each do |item|%>
+                          <%= item.inspect%><br><br>
+                     <%end%>
+                <br>
+                <button><%= link_to "Done", [this], method: :put, remote: true %></button>
+
+                <p>===============================================================================</p>
+             </div>
     <%end%>
-
-
-
 <%end%>
