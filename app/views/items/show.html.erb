@@ -16,10 +16,8 @@
   
 
   
-        <%= form_for current_order.order_items.new, remote: true do |f| %>
-  
-
-  
+     <%= form_for current_order.order_items.new, remote: true do |f| %>
+ 
       <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency @item.price %></span></h4>
         <div class="input-group">
           <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
@@ -29,6 +27,7 @@
           </div>
         </div>
       <% end %>
-  
+  <% if $admin%>
   <br><br><br><br><button><%= link_to 'ADD Pictures to Item', new_main_category_item_item_pic_path(params[:main_category_id], params[:id]) %></button>
  <br><button><%= link_to "Edit Item", edit_main_category_item_path(@item.main_category_id, @item.id) %></button>
+  <%end%>

@@ -1,3 +1,4 @@
+<%if $admin%>
 <% @MCategoryItem = MainCategory.find(params[:id]).items %>
 <% @MCategoryItem.each do |this|%>
 <h3><%= link_to this.title, edit_main_category_path(params[:id])%></h3>
@@ -10,3 +11,4 @@
 <%end%>
 
 <br><br><button><%= link_to "Edit Category", edit_main_category_path(params[:id]) %></button>
+<%end%>

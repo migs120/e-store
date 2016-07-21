@@ -1,3 +1,4 @@
+<%if $admin%>
 <%@pic = MainCategoryPic.find(params[:id])%>
 <img src="<%= @pic.pic_url_url%>" >
 <br>
@@ -8,3 +9,4 @@
 <%= f.submit "Save" %>
 <% end %>
 <br>
+<%end%>

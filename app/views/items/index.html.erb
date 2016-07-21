@@ -12,8 +12,7 @@
   
   
   
-
-
+<%if $admin%>
 <br><br><button><%= link_to "Add Item", new_main_category_item_path(params[:main_category_id]) %></button><br><br><br><br>
-  
+<%end%>  
   
