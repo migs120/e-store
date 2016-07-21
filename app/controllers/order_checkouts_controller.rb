@@ -50,7 +50,8 @@ class OrderCheckoutsController < ApplicationController
       end   
       clean_params
       current_order.order_items.destroy_all
-      render :action => "success"
+      #render :action => "success"
+      redirect_to thank_you_path
     else
       clean_params
       render :action => "failure"
@@ -77,6 +78,9 @@ class OrderCheckoutsController < ApplicationController
 
   end
   
+  def thank_you
+  
+  end
   
 
   private

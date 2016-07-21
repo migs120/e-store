@@ -4,6 +4,8 @@
 <%= f.text_field :title, class: 'form-control', placeholder: '' %>
 <%= f.label :body %>
 <%= f.text_area :body, rows: 4, class: 'form-control', placeholder: "Enter item body" %>
+<br><%= f.label :price%>
+<br><%= f.number_field :price, class: 'form-control', placeholder: "Enter A Title" %>
 <%= f.submit "Save", class: 'btn btn-success' %>
 
 <%end%>
