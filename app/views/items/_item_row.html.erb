@@ -20,7 +20,9 @@
         </div>
       <% end %>
     </div>
+    <%if $admin%>
       <br><button><%= link_to "Add Pics", new_main_category_item_item_pic_path(item.main_category_id, item.id)%></button>
-  <br><button><%= link_to "Edit Item", edit_main_category_item_path(params[:main_category_id], item.id) %></button>
+      <br><button><%= link_to "Edit Item", edit_main_category_item_path(params[:main_category_id], item.id) %></button>
+    <%end%>
   </div>
 </div>

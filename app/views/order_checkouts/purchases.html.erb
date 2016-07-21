@@ -1,3 +1,4 @@
+<%if $admin%>
 <h2>purchases.html.erb</h2>
 <% OrderCheckout.all.each do |this|%>
     <% if this.purchased_at && !this.paid_shipped_n_done %>
@@ -14,4 +15,5 @@
                 <p>===============================================================================</p>
              </div>
     <%end%>
+<%end%>
 <%end%>

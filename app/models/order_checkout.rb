@@ -23,7 +23,7 @@ class OrderCheckout < ActiveRecord::Base
   end
   
   def price_in_cents
-    ($current_order.subtotal*100).round 
+    ($current_order.subtotal*100 + 400).round 
   end
 
   private
@@ -51,18 +51,27 @@ class OrderCheckout < ActiveRecord::Base
   end
   
   def credit_card
-
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
+     if Rails.env.production?
+   
+          @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
 
                 first_name: $params[:order_checkout][:first_name],
                 last_name:$params[:order_checkout][:last_name],
-                number:$params[:order_checkout][:card_number],
+                number: $params[:order_checkout][:card_number],
                 month: $params[:order_checkout]["card_expires_on(2i)"],
                 year:$params[:order_checkout]["card_expires_on(1i)"],
-                verification_value: $params[:order_checkout][:card_verification]
-      
-      
-   )
+                verification_value: $params[:order_checkout][:card_verification]   )
+       else
+           @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
+
+                first_name: $params[:order_checkout][:first_name],
+                last_name:$params[:order_checkout][:last_name],
+                number: $params[:order_checkout][:card_number] == '' ? ENV['PAYPAL_CARD_NUMBER'] : $params[:order_checkout][:card_number],
+                month: $params[:order_checkout]["card_expires_on(2i)"],
+                year:'2020',
+                verification_value: '345'   )
+     end
+       
   end
   
   

@@ -8,41 +8,41 @@
   
   <p>
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, placeholder: current_order.order_checkouts.last.first_name %>
+    <%= f.text_field :first_name, placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.first_name : '' %>
   </p>
   <p>
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name , placeholder: current_order.order_checkouts.last.last_name %>
+    <%= f.text_field :last_name , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.last_name : ''  %>
   </p>
 
  <p>
     <%= f.label :email %><br />
-    <%= f.text_field :email , placeholder: current_order.order_checkouts.last.email %>
+    <%= f.text_field :email , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.email : ''  %>
   </p>
 
  <p>
     <%= f.label :phone %><br />
-    <%= f.text_field :phone , placeholder: current_order.order_checkouts.last.phone %>
+    <%= f.text_field :phone , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.phone : ''  %>
   </p>
 
  <p>
     <%= f.label :adress %><br />
-    <%= f.text_field :adress , placeholder: current_order.order_checkouts.last.adress %>
+    <%= f.text_field :adress , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.adress : ''  %>
   </p>
 
  <p>
     <%= f.label :city %><br />
-    <%= f.text_field :city , placeholder: current_order.order_checkouts.last.city %>
+    <%= f.text_field :city , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.city : ''  %>
   </p>
 
  <p>
     <%= f.label :state %><br />
-    <%= f.text_field :state , placeholder: current_order.order_checkouts.last.state %>
+    <%= f.text_field :state , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.state : ''  %>
   </p>
 
  <p>
     <%= f.label :zip %><br />
-    <%= f.number_field :zip , placeholder: current_order.order_checkouts.last.zip %>
+    <%= f.number_field :zip , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.zip : ''  %>
   </p>
 
 
@@ -52,26 +52,26 @@
 <h3>Billing adress</h3>
  <p>
     <%= f.label :bill_name %><br />
-    <%= f.text_field :bill_name , placeholder: current_order.order_checkouts.last.bill_name %>
+    <%= f.text_field :bill_name , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.bill_name : ''  %>
   </p>
  <p>
     <%= f.label :bill_adress %><br />
-    <%= f.text_field :bill_adress , placeholder: current_order.order_checkouts.last.bill_adress %>
+    <%= f.text_field :bill_adress , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.bill_adress : ''  %>
   </p>
 
  <p>
     <%= f.label :bill_city %><br />
-    <%= f.text_field :bill_city , placeholder: current_order.order_checkouts.last.bill_city %>
+    <%= f.text_field :bill_city , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.bill_city : ''  %>
   </p>
 
  <p>
     <%= f.label :bill_state %><br />
-    <%= f.text_field :bill_state , placeholder: current_order.order_checkouts.last.bill_state %>
+    <%= f.text_field :bill_state , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.bill_state : ''  %>
   </p>
 
  <p>
     <%= f.label :bill_zip %><br />
-    <%= f.number_field :bill_zip , placeholder: current_order.order_checkouts.last.bill_zip %>
+    <%= f.number_field :bill_zip , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.bill_zip : ''  %>
   </p>
 
   <p>

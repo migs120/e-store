@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
      redirect_to root_url, alert: exception.message
    end
   
+ 
+ 
+ 
+  
+  
   def current_order
     #if !Order.where(id: session[:order_id]) == nil && !session[:order_id].nil?
     if !session[:order_id].nil?

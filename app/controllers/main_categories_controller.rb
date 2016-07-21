@@ -9,7 +9,7 @@ class MainCategoriesController < ApplicationController
   end
   
   def create
-    MainCategory.create(params.require(:main_category).permit(:title,:body ) )
+    MainCategory.create(params.require(:main_category).permit(:title,:body,:template ) )
    # MainCategory.create(title: "test" ,body: params.inspect )
     redirect_to main_categories_path
   end

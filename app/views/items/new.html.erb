@@ -1,3 +1,4 @@
+<%if $admin%>
 <h1>Create New Categroy</h1>
 
 <br>
@@ -12,3 +13,4 @@
 <%= f.text_area :body, rows: 5, class: 'form-control', placeholder: "Enter description" %>
 <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
+<%end%>

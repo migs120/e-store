@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720052409) do
+ActiveRecord::Schema.define(version: 20160720090602) do
 
   create_table "checkout_paid_items", force: true do |t|
     t.string   "title"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160720052409) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "template",   default: false
   end
 
   create_table "main_category_pics", force: true do |t|

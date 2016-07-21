@@ -1,12 +1,42 @@
 <h1>MainCategories</h1>
 
-<br><% MainCategory.all.each do |category|%>
-<h3><%= link_to category.title, main_category_items_path(category.id)%></h3>
-<p><%= category.body%></p>
- <%if category.main_category_pics.first%>
-  <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
- <%end%>
-<br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
-<%end%>
-<br><br>
+<br>
+<% MainCategory.all.each do |category|%>
+      <%if !category.template%>
+         <h3><%= link_to category.title, main_category_items_path(category.id)%></h3>
+         <p><%= category.body%></p>
+         <%if category.main_category_pics.first%>
+            <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
+         <%end%>
+          <% if $admin%>
+              <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
+          <%end%>
+    <%end%>
+<%end%> 
+<br>
+<br>
+
+
+<% if $admin %>
 <button><%= link_to 'Make New Category', new_main_category_path%></button>
+<br><br><br><br>
+
+<h1>Templates</h1>
+
+<br>
+<% MainCategory.all.each do |category|%>
+      <%if category.template%>
+         <h3><%= link_to category.title, main_category_items_path(category.id)%></h3>
+         <p><%= category.body%></p>
+         <%if category.main_category_pics.first%>
+            <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
+         <%end%>
+        <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
+    <%end%>
+<%end%>
+<br>
+<br>
+<%end%>
+<script src="assets/js/main_categories/index.js"></script>
+
+
