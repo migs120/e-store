@@ -18,6 +18,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+  
+  
   <%if current_user%>
   <%= link_to "Sign out",destroy_user_session_path, method: :delete %>
   <%end%>
@@ -37,7 +40,7 @@
 
                       <div class="pull-right user-info">
                            <% if current_user %>
-                              Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out",             destroy_user_session_path, method: :delete %>
+                              Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out",destroy_user_session_path, method: :delete %>
                            <% else %>
                              <%= link_to "Sign In", new_user_session_path %> or 
                              <%= link_to "Sign Up", new_user_registration_path %>
@@ -45,7 +48,7 @@
                        </div>
                 </ul>
      
-      <%end%>
+       <%end%>
      
        <% if flash[:notice] %>
          <div class="alert alert-success">
@@ -65,17 +68,17 @@
        <% end %>
      
     <div class="row">
-      <div class="col-xs-6">
-        <h1><%= link_to "My Store", root_path %></h1>
-      </div>
-      <div class="col-xs-6 text-right">
-        <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
-      </div>
+        <div class="col-xs-6">
+          <h1><%= link_to "My Store", root_path %></h1>
+        </div>
+        <div class="col-xs-6 text-right">
+          <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
+        </div>
     </div>
-    <hr>
+   
 
       <%= yield %>
-     </div>
+   </div>
 
 
 
