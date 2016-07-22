@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720090602) do
+ActiveRecord::Schema.define(version: 20160721144633) do
 
   create_table "checkout_paid_items", force: true do |t|
     t.string   "title"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160720090602) do
     t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
   end
 
   add_index "item_pics", ["item_id"], name: "index_item_pics_on_item_id"
@@ -60,6 +62,8 @@ ActiveRecord::Schema.define(version: 20160720090602) do
     t.integer  "main_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
   end
 
   add_index "main_category_pics", ["main_category_id"], name: "index_main_category_pics_on_main_category_id"
