@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
   
  
  
- 
+ def home
+   render 'layouts/application'
+ end
   
   
   def current_order

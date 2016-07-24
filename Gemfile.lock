@@ -33,6 +33,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angular-rails-templates (0.2.0)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     bootstrap-sass (3.1.1.1)
@@ -298,6 +302,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemerchant (~> 1.60)
+  angular-rails-templates
   bootstrap-sass (~> 3.1.1)
   carrierwave
   coffee-rails (~> 4.0.0)

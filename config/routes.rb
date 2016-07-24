@@ -50,9 +50,10 @@ end
 #  get 'welcome/about'
   
   get 'about' => 'welcome#about'
-  
-  root to: 'main_categories#index'
-
+ #========================================= 
+root to: 'main_categories#index'
+#root "application#home"
+#=========================================
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 get "checkout", to: "items#checkout"
