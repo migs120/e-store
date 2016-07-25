@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
    end
   
  
- 
+  def home
+   render 'layouts/application'
+ end
  
   
   
