@@ -1,5 +1,123 @@
 @import "bootstrap";
 
+* {
+    box-sizing: border-box;
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: .3px;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+ } 
+ 
+    .col-p-1 {width: 8.33%;}
+    .col-p-2 {width: 16.66%;}
+    .col-p-3 {width: 25%;}
+    .col-p-4 {width: 33.33%;}
+    .col-p-5 {width: 41.66%;}
+    .col-p-6 {width: 50%;}
+    .col-p-7 {width: 58.33%;}
+    .col-p-8 {width: 66.66%;}
+    .col-p-9 {width: 75%;}
+    .col-p-10 {width: 83.33%;}
+    .col-p-11 {width: 91.66%;}
+    .col-p-12 {width: 100%;} 
+    
+@media only screen and (max-width: 599px) {
+    /* For phone: */
+  .col-dm{display:none; }
+   
+}
+  
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+   
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+   
+}
+  
+  .height{height:400px; }
+  .margin{
+          /*  border-style:solid; border-color:grey; border-width:20px; */
+          }
+  .seebox{
+/*           outline-style:dotted; */
+          }
+  .center { margin-left:auto;
+            margin-right:auto; 
+            margin-bottom:auto;
+            margin-top:auto; 
+/*             justify-content:center; */
+            width: 70%; 
+            text-align:center; 
+            }
+.removempb{padding:0px; margin:0px; border-width:0px;}
+
+.vhcenterp{
+            position: relative;
+          }  
+  
+.vhcenters {
+  
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-right: -50%;
+              transform: translate(-50%, -50%);
+              -webkit-transform: translate(-50%, -50%);
+              -moz-box-shadow: translate(-50%, -50%);
+            }  
+
+
+
+
+//================================================================================================================
+
+//==================================================================================================================
+
+
+
+
+
+
+
+
+
+/*
 .user-info {
    margin-top: 9px;
  }
@@ -7,6 +125,123 @@
  .nav {
    margin-top: 5px;
  }
+
+
+
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.header {
+    background-color: #9933cc;
+    color: #ffffff;
+    padding: 15px;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color :#33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+ 
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+.aside {
+    background-color: #33b5e5;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+  
+  
+
+  .background1 {
+                background: -webkit-linear-gradient(left, #f2f2f2 , white , #f2f2f2); ///* For Safari 5.1 to 6.0 
+                background: -o-linear-gradient(right, #f2f2f2, white , #f2f2f2); ///* For Opera 11.1 to 12.0 
+                background: -moz-linear-gradient(right, #f2f2f2 , white , #f2f2f2); ///* For Firefox 3.6 to 15 
+                background: linear-gradient(to right, #f2f2f2, white , #f2f2f2); ///* Standard syntax 
+  
+                }
+  .fontsize { font-size: 1em; }
+  .menucenter{
+              margin: 0;
+              background: yellow;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-right: -50%;
+              transform: translate(-50%, -50%)
+    
+              }
+  .buttonbox {
+              display:inline; 
+              float:right; 
+              height:60px; 
+              position:relative ;
+              border-top:solid 1px;
+              border-left:solid 1px;
+              font-size:19px;
+              cursor:pointer;
+    
+                 -webkit-box-shadow: 12px 10px 5px -1px rgba(0,0,0,0.75);
+                -moz-box-shadow: 12px 10px 5px -1px rgba(0,0,0,0.75);
+                box-shadow: 12px 10px 5px -1px rgba(0,0,0,0.75);      
+            }
+
+  .buttonbox p {
+              position: absolute; 
+              top: 50%; 
+              left: 50%;
+              margin-right: -50%;
+              transform: translate(-50%, -50%); 
+              -webkit-transform: translate(-50%, -50%);// /* Safari 
+              -ms-transform: translate(-50%, -50%); ///* IE 9 
+}
+  
+.picshadow {
+              -webkit-box-shadow: 12px 11px 5px -1px rgba(0,0,0,0.75);
+            -moz-box-shadow: 12px 11px 5px -1px rgba(0,0,0,0.75);
+            box-shadow: 12px 11px 5px -1px rgba(0,0,0,0.75); border-top:solid 1px; border-left:solid 1px;
+            }
+  
+
+  
+.dropmenustyle{font-size:20px;}  
+
+  
+*/
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

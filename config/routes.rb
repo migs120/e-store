@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+resources :order_checkouts
+  #get 'order_checkouts/index'
+
+  #get 'order_checkouts/show'
+
+  #get 'order_checkouts/new'
+
+  #get 'order_checkouts/edit'
+
+  #get 'order_items/create'
+
+  #get 'order_items/update'
+
+  #get 'order_items/destroy'
+
+  #get 'carts/show'
 
 resources :main_categories do
   resources :main_category_pics
@@ -21,7 +37,8 @@ end
 #   get 'sites/new'
 
 #   get 'sites/edit'
-  
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]  
  
 
   devise_for :users
@@ -34,11 +51,17 @@ end
   
   get 'about' => 'welcome#about'
   
-  root to: 'main_categories#index'
+  #========================================= 
+root to: 'main_categories#index'
+#root "application#home"
+#=========================================
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+get "checkout", to: "items#checkout"
 
+get "purchases", to: "order_checkouts#purchases"
+get "thank_you", to: "order_checkouts#thank_you"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
