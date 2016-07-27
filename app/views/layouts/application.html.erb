@@ -17,7 +17,15 @@
   
   <%= csrf_meta_tags %>
 </head>
-<body>
+  
+  
+  
+  <body ng-app="app">
+<!-- <body> -->
+  
+  
+  
+  
   <%if current_user%>
   <%= link_to "Sign out",destroy_user_session_path, method: :delete %>
   <%end%>
@@ -75,6 +83,8 @@
     <hr>
 
       <%= yield %>
+     <ui-view></ui-view>
+     
      </div>
 
 
