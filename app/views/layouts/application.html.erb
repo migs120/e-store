@@ -17,14 +17,34 @@
   
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="col-12 seebox removempb">
+    
+     
+<!-- top menu bar -->
+<div class="col-m-12 col-12 seebox " style=" background-color:#5F5F5F; position:fixed; z-index: 5;" >
+
+  <%= link_to cart_path do%>
+    <div class="col-9 col-m-9 col-p-9  seebox buttonbox" id="button" style="background-color:#5F5F5F;">
+      <p class='cart-text' style="color:white;"> <%= render 'layouts/cart_text'%></p>
+    </div>
+  <%end%>
+  
+   <%= link_to root_path do%>
+  <div class="col-1 col-m-3 col-p-3  seebox buttonbox " id="button" style="float:left; background-color:#5F5F5F;" ><p style="color:white;">home</p></div>
+   <%end%>
+
+ </div>
   <%if current_user%>
   <%= link_to "Sign out",destroy_user_session_path, method: :delete %>
   <%end%>
-  <% $admin = current_user && current_user.role == "admin" %>
+  <% $admin = current_user && current_user.role == "admin" %>     
+       <% if $admin %>
   
-   <div class="container">
-       <% if current_user && current_user.role == "admin" %>
+   <!-- clear zone -->
+<div class="col-m-12 col-12 seebox  margin" style="height:50px;">
+</div>   
+  
+  
                  <ul class="nav nav-tabs">
 
                        <li><%= link_to "E-Store", root_path %></li>
@@ -37,7 +57,7 @@
 
                       <div class="pull-right user-info">
                            <% if current_user %>
-                              Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out",             destroy_user_session_path, method: :delete %>
+                              Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
                            <% else %>
                              <%= link_to "Sign In", new_user_session_path %> or 
                              <%= link_to "Sign Up", new_user_registration_path %>
@@ -45,7 +65,7 @@
                        </div>
                 </ul>
      
-      <%end%>
+       
      
        <% if flash[:notice] %>
          <div class="alert alert-success">
@@ -64,20 +84,19 @@
          </div>
        <% end %>
      
-    <div class="row">
-      <div class="col-xs-6">
-        <h1><%= link_to "My Store", root_path %></h1>
-      </div>
-      <div class="col-xs-6 text-right">
-        <h1 class="cart-text"><%= render 'layouts/cart_text' %></h1>
-      </div>
-    </div>
-    <hr>
+     
+
+    <%end%>  
+  
+    <!-- clear zone -->
+<div class="col-m-12 col-12 seebox  margin" style="height:70px;">
+</div> 
+  
 
       <%= yield %>
-     </div>
+     
 
-
+<!-- <script src="assets/js/application.js"></script> -->
 
 </body>
 </html>
