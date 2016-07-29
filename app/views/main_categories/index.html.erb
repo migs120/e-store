@@ -1,14 +1,16 @@
-<div class='seebox removempb'>
+<div class='seebox removempb ' style="border:2px solid red">
 
-<h1 style='text-align:center;'>Categories</h1>
-
+  
+      <h1 style='text-align:center;'>Categories</h1>
+  
+  
 </div>
 
 
 
 
-
-<div class="col-11 seebox vhcenters removempb">
+<!-- <div class="vhcenterp removempb"> -->
+<div class="col-11 seebox vhcenters removempb" style="border:2px solid blue" >
   <% MainCategory.all.each do |category|%>
         <%if !category.template%>
 
@@ -31,7 +33,7 @@
   <%end%> 
 </div>
 
-
+<!-- </div> -->
 
 
 <br><br>
