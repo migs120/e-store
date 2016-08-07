@@ -42,19 +42,19 @@
 
     <div class="row">
       <div class="medium-6 columns">
-        <img class="thumbnail" src="http://placehold.it/650x350">
+        <img class="thumbnail" src="<%= @item.item_pics.any? ? @item.item_pics.first.pic_url.url : "https://placehold.it/650x350"%>">
         <div class="row small-up-4">
           <div class="column">
-            <img class="thumbnail" src="http://placehold.it/250x200">
+            <img class="thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRC4Iwiwxr-myVqwN_s-u7gRUa_WA_sjWPNCv3fveujkk3_McEi">
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://placehold.it/250x200">
+            <img class="thumbnail" src="https://placehold.it/250x200">
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://placehold.it/250x200">
+            <img class="thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRC4Iwiwxr-myVqwN_s-u7gRUa_WA_sjWPNCv3fveujkk3_McEi">
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://placehold.it/250x200">
+            <img class="thumbnail" src="https://placehold.it/250x200">
           </div>
         </div>
       </div>
@@ -65,36 +65,26 @@
 
 
         
-<!--         =============================== -->
-<!--         ============================== -->
-        <%= form_for current_order.order_items.new, remote: true do |f| %>
-        <div class="row">
+
+      <%= form_for current_order.order_items.new, remote: true do |f| %>
+      <div class="row">
           <div class="small-3 columns">
-<!--             <label for="middle-label" class="middle">Quantity</label> -->
- <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+          <label for="middle-label" class="middle">Quantity</label>
+             <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
           </div>
-          <div class="small-9 columns">
-            
-            <input type="text" id="middle-label" placeholder="One fish two fish">
-            
-            
+          <div class="small-9 columns"> 
           </div>
-        </div>
-        <a href="#" class="button large expanded">Buy Now</a>
-        <% end %>
-<!--         =========================================== -->
-       <%= form_for current_order.order_items.new, remote: true do |f| %>
- 
+      </div>
+
       <h4 class="text-right">Unit Price: <span style="color: green"><%= number_to_currency @item.price %></span></h4>
         <div class="input-group">
-          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
           <div class="input-group-btn">
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+            <%= f.submit "Add to Cart", class: "button large expanded" %>
           </div>
         </div>
       <% end %>
-<!--         =========================== -->
+
         
         
         
@@ -119,7 +109,7 @@
           <h4>Reviews</h4>
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
+              <img class="thumbnail" src="https://placehold.it/200x200">
             </div>
             <div class="media-object-section">
               <h5>Mike Stevenson</h5>
@@ -128,7 +118,7 @@
           </div>
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
+              <img class="thumbnail" src="https://placehold.it/200x200">
             </div>
             <div class="media-object-section">
               <h5>Mike Stevenson</h5>
@@ -137,7 +127,7 @@
           </div>
           <div class="media-object stack-for-small">
             <div class="media-object-section">
-              <img class="thumbnail" src="http://placehold.it/200x200">
+              <img class="thumbnail" src="https://placehold.it/200x200">
             </div>
             <div class="media-object-section">
               <h5>Mike Stevenson</h5>
@@ -153,31 +143,31 @@
         <div class="tabs-panel" id="panel2">
           <div class="row medium-up-3 large-up-5">
             <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
+              <img class="thumbnail" src="https://placehold.it/350x200">
               <h5>Other Product <small>$22</small></h5>
               <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
               <a href="#" class="button hollow tiny expanded">Buy Now</a>
             </div>
             <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
+              <img class="thumbnail" src="https://placehold.it/350x200">
               <h5>Other Product <small>$22</small></h5>
               <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
               <a href="#" class="button hollow tiny expanded">Buy Now</a>
             </div>
             <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
+              <img class="thumbnail" src="https://placehold.it/350x200">
               <h5>Other Product <small>$22</small></h5>
               <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
               <a href="#" class="button hollow tiny expanded">Buy Now</a>
             </div>
             <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
+              <img class="thumbnail" src="https://placehold.it/350x200">
               <h5>Other Product <small>$22</small></h5>
               <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
               <a href="#" class="button hollow tiny expanded">Buy Now</a>
             </div>
             <div class="column">
-              <img class="thumbnail" src="http://placehold.it/350x200">
+              <img class="thumbnail" src="https://placehold.it/350x200">
               <h5>Other Product <small>$22</small></h5>
               <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam.</p>
               <a href="#" class="button hollow tiny expanded">Buy Now</a>
@@ -201,7 +191,7 @@
 
     
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
     <script>
       $(document).foundation();
     </script>
