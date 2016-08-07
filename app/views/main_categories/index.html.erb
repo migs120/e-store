@@ -127,25 +127,41 @@
         
       </div> 
 
-
-
-
-
                 <% if $admin%>
                     <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
                 <%end%>
 
        
 <%end%> 
-      
-      
-      
-      
-      
-      
+   
     </div>
 
     <hr>
+
+    <div class="row column">
+      <div class="callout primary">
+        <h3>Our Departments</h3>
+      </div>
+    </div>
+
+    <hr>
+
+
+ <div class="row small-up-2 medium-up-3 large-up-4">
+   <% MainCategory.all.each do |category|%>
+   <%if !category.template%>
+            <div class="column">
+              <%= link_to main_category_path(category.id) do%>
+              <img class="thumbnail" src="<%= category.main_category_pics.any? ? category.main_category_pics.first.pic_url.url : "https://placehold.it/550x550"%>">
+              <%end%>
+              <h5><%= category.title%></h5>
+            </div>
+   <%end%>
+   <%end%>
+      
+          </div>
+
+
 
     <div class="row column">
       <div class="callout primary">
