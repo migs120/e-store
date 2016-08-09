@@ -1,4 +1,4 @@
- require 'faker'
+require 'faker'
 
 
  
@@ -11,16 +11,12 @@
  # The `save` method then saves this User to the database.
 
  # Create an admin user
- admin = User.new(
-   name:     'AdminUser',
-   email:    'admin@example.com',
-   password: '11223344',
-   role:     'admin'
- )
- admin.skip_confirmation!
- admin.save!
- 
+cat1x = MainCategory.new(title: "first categroy", body: "first category description", template: false) 
 
+cat1x.main_category_pics.build(pic_url: "https://bloccit-120.s3.amazonaws.com/uploads/main_category_pic/pic_url/3/ScreenHunter_04_Jun._08_17.19.gif" ,
+  name: "", description: "https://bloccit-120.s3.amazonaws.com/uploads/main_category_pic/pic_url/3/ScreenHunter_04_Jun._08_17.19.gif")
+
+cat1x.save!
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
@@ -29,3 +25,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#pic_url: "https://bloccit-120.s3.amazonaws.com/uploads/main_category_pic/pic_url/3/ScreenHunter_04_Jun._08_17.19.gif" ,name: "", description: "https://bloccit-120.s3.amazonaws.com/uploads/main_category_pic/pic_url/3/ScreenHunter_04_Jun._08_17.19.gif"

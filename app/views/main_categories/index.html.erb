@@ -1,6 +1,7 @@
 
 <%if $admin %>
-<div class='col-12 seebox removempb ' style="border:2px solid red">
+
+<div class='col-12 seebox removempb '>
 
   
       <h1 style='text-align:center;'>Categories</h1>
@@ -14,43 +15,31 @@
 <div class="col-1 vhcenterp  seebox removempb" style="height:2px;">
  </div>
 
-<div class="col-10 seebox removempb" style="border:2px solid blue;" >
-  
+<div class="col-10 seebox removempb"  >
   
   <% MainCategory.all.each do |category|%>
         <%if !category.template%>
 
-
-
-
                <h3><%= link_to category.title, main_category_items_path(category.id)%></h3>
-               <p><%= category.body%></p>
-               <%if category.main_category_pics.first%>
-                  <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
+               <p>
+               <%if category.main_category_pics.first %>
+                 <% pic = category.main_category_pics.first.pic_url.url %>
+                 <% pic_escape = category.main_category_pics.first.description %>
+                  <img src="<%= (pic == nil) | (pic == "") ? pic_escape : pic %>" style='height:100px; width:100px;'>
                <%end%>
-
-
-
-                <% if $admin%>
-                    <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
-                <%end%>
-
-        <%end%> 
-<%end%> 
-  
-  
-  
-</div>
-
-<!-- </div> -->
+                <%= category.body%></p>
+               <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
+                <hr>
+              
+            <%end%> 
+    <%end%> 
 
 
 <br><br>
 
 
-<% if $admin %>
-      <button><%= link_to 'Make New Category', new_main_category_path%></button>
-      <br><br><br><br>
+
+
 
       <h1>Templates</h1>
 
@@ -60,16 +49,19 @@
                <h3><%= link_to category.title, main_category_items_path(category.id)%></h3>
                <p><%= category.body%></p>
                <%if category.main_category_pics.first%>
-                  <img src="<%= category.main_category_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
+                 <%pic = category.main_category_pics.first.pic_url.url%>
+                 <%pic_escape = category.main_category_pics.first.description%>
+                  <img src="<%= (pic == nil) | (pic == "") ? pic_escape : pic%>" style='height:100px; width:100px;'>
                <%end%>
               <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
           <%end%>
       <%end%>
       <br>
       <br>
-<%end%>
+      <button><%= link_to 'Make New Category', new_main_category_path%></button>
+      <br><br><br><br>
 <script src="assets/js/main_categories/index.js"></script>
-
+</div>
 <%end%><%# ln 1  if 1==0 on %>
 
 
@@ -152,7 +144,9 @@
    <%if !category.template%>
             <div class="column">
               <%= link_to main_category_path(category.id) do%>
-              <img class="thumbnail" src="<%= category.main_category_pics.any? ? category.main_category_pics.first.pic_url.url : "https://placehold.it/550x550"%>">
+              <%pic = category.main_category_pics.first.pic_url.url%>
+              <%pic_escape = category.main_category_pics.first.description%>
+              <img class="thumbnail" src="<%= category.main_category_pics.any? ? ((pic == nil) | (pic == "") ? pic_escape : pic) : "https://placehold.it/550x550"%>">
               <%end%>
               <h5><%= category.title%></h5>
             </div>

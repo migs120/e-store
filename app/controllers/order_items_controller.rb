@@ -20,6 +20,12 @@ class OrderItemsController < ApplicationController
     @order_item.destroy
     @order_items = @order.order_items
   end
+  
+  def seeds
+    
+  end
+  
+  
 private
   def order_item_params
     params.require(:order_item).permit(:quantity, :item_id)
