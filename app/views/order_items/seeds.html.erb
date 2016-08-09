@@ -1,0 +1,46 @@
+<div class="col-1 seebox"></div> 
+<div class="col-10 seebox">
+  
+ @item = MainCategory.find(params[:main_category_id]).items.create(params.require(:item).permit(:title, :body, :name, :price))
+  
+<h1>seeds creator</h1>
+ <% MainCategory.all.each do |category|%>
+
+  <%= "cat#{category.id}x"%> =  MainCategory.new(title: "<%=category.title%>", body: "<%=category.body%>", template: <%= category.template%>) <br><br>
+      <%category.main_category_pics.each do |pic|%>
+        <%= "cat#{category.id}x"%>.main_category_pics.build(pic_url:"<%=pic.pic_url.url%>", name: "<%= pic.name%>", description: "<%= (pic.pic_url.url == "") | (pic.pic_url.url == nil) ? pic.description : pic.pic_url%>")<br>
+         
+      <%end%>
+  <%= "cat#{category.id}x"%>.save!
+  <p>=====================================</p>
+<br>
+<%end%> 
+  
+  
+  
+  
+  <br><br>
+<% MainCategoryPic.all.each do |pic|%>
+ MainCategroyPic.create(pic_url: "<%=pic.pic_url%>", main_category_id: <%=pic.main_category_id%>, name: "<%= pic.name%>", name: "<%= pic.description%>")
+  
+<br>
+<%end%>  
+ <br><br> 
+  
+<% Item.all.each do |item|%>
+Item.create(title: "<%=item.title%>", body: "<%=item.body%>", main_category_id: <%=item.main_category_id%>, name: "<%= item.name%>", price: <%= item.price%>, active: <%= item.active%> )<%= item.id%>        
+<br>
+<%end%>
+<br><br>
+
+ <% ItemPic.all.each do |pic|%>
+ItemPic.create(pic_url: "<%=pic.pic_url%>", main_category_id: <%=pic.item_id%>, name: "<%= pic.name%>", name: "<%= pic.description%>")
+<br>
+<%end%>  
+ <br><br>  
+  
+  
+
+</div>
+<div class="col-1 seebox"></div> 
+

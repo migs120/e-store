@@ -59,6 +59,7 @@ get "checkout", to: "items#checkout"
 
 get "purchases", to: "order_checkouts#purchases"
 get "thank_you", to: "order_checkouts#thank_you"
+get "seeds", to: "order_items#seeds"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

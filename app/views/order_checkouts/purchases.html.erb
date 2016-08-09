@@ -1,19 +1,34 @@
 <%if $admin%>
-<h2>purchases.html.erb</h2>
-<% OrderCheckout.all.each do |this|%>
-    <% if this.purchased_at && !this.paid_shipped_n_done %>
-            <div id="order_checkout-<%=this.id%>">
-                 <%= this.inspect %><br><br>
-                 <%= this.order_checkout_transactions.inspect%>
-                <h4>items bought</h4>
-                     <%this.checkout_paid_items.each do |item|%>
-                          <%= item.inspect%><br><br>
-                     <%end%>
-                <br>
-                <button><%= link_to "Done", [this], method: :put, remote: true %></button>
+    <!-- clear zone3 -->
+<div class="col-m-12 col-12 seebox removempb" style="" style="border:2px solid red;">
+           <!--   left-side space -->
+          <div class="col-1 seebox"></div>
+  
+          <!--   center-div -->
+          <div class="col-10 seebox">
 
-                <p>===============================================================================</p>
-             </div>
-    <%end%>
-<%end%>
+                    <h2>purchases.html.erb</h2>
+                    <% OrderCheckout.all.each do |this|%>
+                        <% if this.purchased_at && !this.paid_shipped_n_done %>
+                                <div id="order_checkout-<%=this.id%>">
+                                     <p><%= this.inspect %></p><br><br>
+                                     <p><%= this.order_checkout_transactions.inspect%></p>
+                                    <h4>items bought</h4>
+                                         <%this.checkout_paid_items.each do |item|%>
+                                             <p> <%= item.inspect%></p><br><br>
+                                         <%end%>
+                                    <br>
+                                    <button><%= link_to "Done", [this], method: :put, remote: true %></button>
+
+                                    <p>===============================================================================</p>
+                                 </div>
+
+                        <%end%>
+                    <%end%>
+
+            </div>
+  
+            <!--   right-side space -->
+            <div class="col-1 seebox"></div> 
+</div> 
 <%end%>
