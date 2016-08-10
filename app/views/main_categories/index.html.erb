@@ -23,7 +23,7 @@
                <p>
                <%if category.main_category_pics.first %>
                  <% pic = category.main_category_pics.first.pic_url.url %>
-                 <% pic_escape = category.main_category_pics.first.description %>
+                 <% pic_escape = category.main_category_pics.first.urlseed %>
                   <img src="<%= (pic == nil) | (pic == "") ? pic_escape : pic %>" style='height:100px; width:100px;'>
                <%end%>
                 <%= category.body%></p>
@@ -49,7 +49,7 @@
                <p><%= category.body%></p>
                <%if category.main_category_pics.first%>
                  <%pic = category.main_category_pics.first.pic_url.url%>
-                 <%pic_escape = category.main_category_pics.first.description%>
+                 <%pic_escape = category.main_category_pics.first.urlseed%>
                   <img src="<%= (pic == nil) | (pic == "") ? pic_escape : pic%>" style='height:100px; width:100px;'>
                <%end%>
               <br><button><%= link_to "Edit This Category", edit_main_category_path(category.id) %></button>
@@ -144,7 +144,7 @@
             <div class="column">
               <%= link_to main_category_path(category.id) do%>
               <%pic = category.main_category_pics.first.pic_url.url%>
-              <%pic_escape = category.main_category_pics.first.description%>
+              <%pic_escape = category.main_category_pics.first.urlseed%>
               <img class="thumbnail" src="<%= category.main_category_pics.any? ? ((pic == nil) | (pic == "") ? pic_escape : pic) : "https://placehold.it/550x550"%>">
               <%end%>
               <h5><%= category.title%></h5>

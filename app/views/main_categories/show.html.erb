@@ -18,9 +18,13 @@
 <%@items = MainCategory.find(params[:id]).items%>
 <%if @items.any?%>
 <%@items.each do |item|%>
+<% if item.item_pics.any?%>
+<%pic = item.item_pics.first.pic_url.url%>
+<%pic_seed = item.item_pics.first.urlseed%>
+<%end%>
     <div class="row">
       <div class="medium-6 columns">
-        <img class="thumbnail" src="<%= item.item_pics.any? ? item.item_pics.first.pic_url.url : "https://placehold.it/650x350"%>">
+        <img class="thumbnail" src="<%= item.item_pics.any? ? (pic == nil ? pic_seed : pic) : "https://placehold.it/650x350"%>">
         <div class="row small-up-4">
           <div class="column">
             <img class="thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRC4Iwiwxr-myVqwN_s-u7gRUa_WA_sjWPNCv3fveujkk3_McEi">
