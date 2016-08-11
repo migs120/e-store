@@ -4,7 +4,9 @@
     <div class="col-xs-8">
       <h4><small><%= link_to item.title, main_category_item_path(item.main_category_id, item.id)  %></small></h4><br>
        <% if item.item_pics.any?%>
-      <img src="<%= item.item_pics.first.pic_url.url%>" style='height:100px; width:100px;'>
+      <%pic = item.item_pics.first.pic_url.url%>
+      <%pic_seed = item.item_pics.first.urlseed %>
+      <img src="<%= pic == nil ? pic_seed : pic %>" style='height:100px; width:100px;'>
       <%end%>
     </div>
     <div class="col-xs-4">

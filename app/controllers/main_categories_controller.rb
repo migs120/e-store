@@ -1,11 +1,11 @@
 class MainCategoriesController < ApplicationController
- 
+
   def index
-   # MainCategory.create(title: "test" ,body: params.inspect )
+
   end
 
   def show
-    
+   
   end
   
   def create
