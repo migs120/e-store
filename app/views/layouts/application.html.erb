@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,10 @@
   <%if current_user%>
   <%= link_to "Sign out",destroy_user_session_path, method: :delete %>
   <%end%>
-  <% $admin = current_user && current_user.role == "admin" %>     
+  
+  
+
+  
        <% if $admin %>
   
    <!-- clear zone1 -->
@@ -105,3 +109,4 @@
 
 </body>
 </html>
+

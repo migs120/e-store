@@ -105,7 +105,11 @@
       <div class="column">
         <%= link_to main_category_item_path(item.main_category_id, item.id) do%>
         <div class="thumbnail vhcenterp" style="width:300px; height:400px; background-color:lightgrey; " >
-         <img class="thumbnail vhcenters" src="<%= item.item_pics.first ? item.item_pics.first.pic_url.url : "https://placehold.it/300x400" %>" style="hieght:400px;">
+          <%if item.item_pics.any?%>
+          <%pic = item.item_pics.first.pic_url.url%>
+          <%picseed = item.item_pics.first.urlseed%>
+          <%end%>
+         <img class="thumbnail vhcenters" src="<%= item.item_pics.first ? (pic == nil ? picseed : pic) : "https://placehold.it/300x400" %>" style="hieght:400px;">
         </div>
         <%end%>
         <h5><%= item.name %></h5>

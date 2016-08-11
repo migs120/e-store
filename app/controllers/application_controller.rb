@@ -5,15 +5,22 @@ class ApplicationController < ActionController::Base
   #filter_parameter_logging :card_number, :card_verification
   protect_from_forgery with: :exception
     before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :admin
    helper_method :current_order
    rescue_from Pundit::NotAuthorizedError do |exception|
      redirect_to root_url, alert: exception.message
    end
   
  
+def admin
+         if current_user && current_user.role == "admin"
+         $admin = true
+      else 
+         $admin = false
+       end
+end
  
  
-  
   
   def current_order
     #if !Order.where(id: session[:order_id]) == nil && !session[:order_id].nil?
