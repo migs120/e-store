@@ -1,6 +1,9 @@
 
  
+<div class="col-1"></div>
 
+<div class="col-10" style="display:none;" id="instore-form">
+  <button class="center" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; float:right;" >changed my mind i want paypal express</button><br>
 <%= form_for OrderCheckout.new, :url => {:controller => 'order_checkouts', :action => 'create',  :method => 'post'} do |f| %>
 
 
@@ -100,6 +103,38 @@
   <p><%= f.submit "Submit" %></p>
 <% end %>
 <br>
+</div>
+<div id="pay-type" class="col-10 vhcenterp see box" style="height:100%;">
+      <div class="col-12 vhcenters seebox center">
+    <button class="center" id="instore-checkout-button" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; ">in-store checkout</button><br>
+    <button class="center" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; " >paypal express</button><br>
+      </div>
+</div>
 
+<div class="col-1"></div>
+
+
+
+
+
+<script src="<%= request.base_url%>/assets/js/order_checkouts/new.js"></script>
+
+
+<script>
+
+
+$(document).ready(function(){
+    		                      $("#instore-checkout-button").click(function(){
+        		                                                                  $("#instore-form").show();
+                                                                              $("#pay-type").hide();
+                                                                                
+                                                                            });
+                            });
+
+
+
+
+
+</script>
 
 
