@@ -3,9 +3,18 @@
 <div class="col-1"></div>
 
 <div class="col-10" style="display:none;" id="instore-form">
-  <button class="center" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; float:right;" >changed my mind i want paypal express</button><br>
+  
+  <div class="col-12" style="margin:30px;">
+  
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" class="center" style=" float:right; width:180px; height:60px;"><br>
+</div>
+  
+ 
+  
+  
+  
+  
 <%= form_for OrderCheckout.new, :url => {:controller => 'order_checkouts', :action => 'create',  :method => 'post'} do |f| %>
-
 
 <h3>Shipping Adress</h3>
   
