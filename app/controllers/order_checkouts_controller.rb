@@ -62,6 +62,10 @@ class OrderCheckoutsController < ApplicationController
     end
   end
   
+  
+  
+  
+  
   def purchases
     render "purchases"
   end
