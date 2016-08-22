@@ -65,6 +65,76 @@ class OrderCheckoutsController < ApplicationController
   
   
   
+  def pal_purchase
+   # $params = params
+    #$current_order = current_order 
+    a = []
+    b = []
+    current_order.order_items.each do |item|
+      a << item.id.to_s 
+      b << Item.find(item.item_id).name
+    end
+    
+    logger.debug puts "
+                      debbuger
+                      \n #{a.to_s}
+                      \n #{b.to_s}
+                      \n currnt_order-> #{current_order.inspect }
+                      \n currnt_order.order_items-> \n #{current_order.order_items.inspect } 
+                      \n currnt_order.subtotal-> #{current_order.subtotal }
+                      
+                      " 
+               # exit
+    
+    
+    if current_order.order_items.any? 
+         @retun_values={
+                      
+                      item_id: a.to_s ,
+                       item_name: b.to_s,
+                       order_id: current_order.id,
+                      # email: current_user.email,
+                       #item_sub_category:@item.sub_category_id
+                       }
+            values = {
+                      business: "migs432-facilitator@yahoo.com ",
+                      cmd: "_xclick",
+                      upload: 1,
+                 
+                    return: "#{request.base_url}/pal_return?user_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
+                 
+                   notify_url: "#{request.base_url}/pal_return?user_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
+                   
+                     amount: current_order.subtotal.to_s,#number_to_currency order_item.total_price,
+                     item_name: b.to_s,
+                     item_number: "1",
+                     quantity: a.count.to_s,
+                     shipping: "4.00"
+                    
+    }
+       
+         redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+      
+     else
+         flash[:error] = "There was an error saving the Category. Please try again."
+
+     end
+    
+    
+    
+  end
+  
+  
+  def pal_return
+     $params = params
+    OrderCheckout.create(instructions: params.to_s)
+    clean_params
+    
+    redirect_to root_path
+    
+  end
+  
+  
   
   def purchases
     render "purchases"
