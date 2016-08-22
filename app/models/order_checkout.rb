@@ -43,9 +43,11 @@ class OrderCheckout < ActiveRecord::Base
   end
   
   def validate_card
-    unless credit_card.valid?
-      credit_card.errors.full_messages.each do |message|
-        #errors.add_to_base message
+    if !$params[:pal_button]
+      unless credit_card.valid?
+        credit_card.errors.full_messages.each do |message|
+          #errors.add_to_base message
+        end
       end
     end
   end
