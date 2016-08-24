@@ -142,7 +142,7 @@ class OrderCheckoutsController < ApplicationController
    # redirect_to root_path
 #=end
     
-=begin
+#=begin
   
  #   li1 = "#{params[:order_checkout]['card_expires_on(1i)']}"
  #   li2 = "-#{params[:order_checkout]['card_expires_on(2i)']}"
@@ -152,22 +152,22 @@ class OrderCheckoutsController < ApplicationController
                                 first_name: params[:first_name] ,
                                 last_name:  params[:last_name] ,
                                 email: params[:payer_email] ,
-                                adress:  params[:adress_street] ,
-                                city: params[:adress_city] ,
-                                state:params[:adress_state] ,
-                                zip: params[:adress_zip] ,
-                                bill_name:params[:adress_name] ,
-                                bill_adress:  params[:adress_street] ,
-                                bill_city: params[:adress_city] ,
-                                bill_state:  params[:adress_state] ,
-                                bill_zip: params[:adress_zip] ,  
+                                adress:  params[:address_street] ,
+                                city: params[:address_city] ,
+                                state:params[:address_state] ,
+                                zip: params[:address_zip] ,
+                                bill_name:params[:address_name] ,
+                                bill_adress:  params[:address_street] ,
+                                bill_city: params[:address_city] ,
+                                bill_state:  params[:address_state] ,
+                                bill_zip: params[:address_zip] ,  
                                 instructions: params.to_s
                                 )
     
    @Order = Order.find(params[:order_id])
     @OrderCheckout = @Order.order_checkouts.last
     
-
+  #@OrderCheckout.order_checkout_transactions.create!(:action => "purchase", :amount => params[:payment_gross], :response => params.to_s)
          @OrderCheckout.update_attributes(purchased_at: DateTime.now  )     
        @Order.order_items.each do |item|
          Item.find(item.item_id) do |itemIn|
@@ -177,7 +177,7 @@ class OrderCheckoutsController < ApplicationController
     
       current_order.order_items.destroy_all
     
-=end
+#=end
     
     
     
