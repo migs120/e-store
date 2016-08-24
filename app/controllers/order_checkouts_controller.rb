@@ -1,4 +1,5 @@
 class OrderCheckoutsController < ApplicationController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   respond_to :html, :js
   
   def index
@@ -14,9 +15,10 @@ class OrderCheckoutsController < ApplicationController
   end
   
   def create
-  #@order = current_cart.build_order(params[:order])
-    $params = params
-    $current_order = current_order
+    
+   
+  #@order = current_cart.build_order(params[:order])  price_in
+
     li1 = "#{params[:order_checkout]['card_expires_on(1i)']}"
     li2 = "-#{params[:order_checkout]['card_expires_on(2i)']}"
     li3 = "-#{params[:order_checkout]['card_expires_on(3i)']}"
@@ -39,27 +41,30 @@ class OrderCheckoutsController < ApplicationController
                                 card_expires_on: card_exp_date,
                                 instructions: params[:order_checkout][:instructions]
                                 )
+    
   @order.ip_address = request.remote_ip
+# @order.validate_card(params)
   if @order.save
-    if @order.purchase
+    if @order.purchase(current_order, params)
       @order.update_attributes(purchased_at: DateTime.now  )     
        current_order.order_items.each do |item|
          Item.find(item.item_id) do |itemIn|
            OrderCheckout.find(@order.id).checkout_paid_items.create(title: itemIn.title, name: itemIn.name, price:itemIn.price, body: itemIn.body)
           end
       end   
-      clean_params
+    
       current_order.order_items.destroy_all
       #render :action => "success"
       redirect_to thank_you_path
     else
-      clean_params
+     
       render :action => "failure"
     end
     else
-      clean_params
+     
       render :action => 'new'
     end
+   
   end
   
   
@@ -73,7 +78,7 @@ class OrderCheckoutsController < ApplicationController
     current_order.order_items.each do |item|
       a << item.id.to_s 
       b << Item.find(item.item_id).name
-    end
+          end
     
     logger.debug puts "
                       debbuger
@@ -98,21 +103,24 @@ class OrderCheckoutsController < ApplicationController
                        }
             values = {
                       business: "migs432-facilitator@yahoo.com ",
-                      cmd: "_xclick",
+                      cmd: "_cart",
                       upload: 1,
-                 
-                    return: "#{request.base_url}/pal_return?user_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
-                 
-                   notify_url: "#{request.base_url}/pal_return?user_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
-                   
-                     amount: current_order.subtotal.to_s,#number_to_currency order_item.total_price,
-                     item_name: b.to_s,
-                     item_number: "1",
-                     quantity: a.count.to_s,
-                     shipping: "4.00"
-                    
-    }
-       
+                      return: "#{request.base_url}/thank_you",#/pal_return?user_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
+                      notify_url: "#{request.base_url}/pal_return?order_id=#{@retun_values[:order_id]}&authenticity_token=#{form_authenticity_token}&pal_button=true&method=post",
+                      handling_cart: "4.00",
+                      shopping_url: "#{request.base_url}/"
+                      #display: "1"
+                      }
+      
+      current_order.order_items.each_with_index do |item, index|
+                        values.merge!({
+                                      # :add => "#{index+1}",  
+                                       :"amount_#{index+1}" => item.total_price.to_s,
+                                       :"item_name_#{index+1}"=> Item.find(item.item_id).name,
+                                       :"item_number_#{index+1}"=> item.item_id,
+                                       :"quantity_#{index+1}"=> item.quantity,
+                                    })
+                      end
          redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
       
      else
@@ -126,11 +134,66 @@ class OrderCheckoutsController < ApplicationController
   
   
   def pal_return
-     $params = params
+#=begin
+   
     OrderCheckout.create(instructions: params.to_s)
-    clean_params
+   
     
-    redirect_to root_path
+   # redirect_to root_path
+#=end
+    
+=begin
+  
+ #   li1 = "#{params[:order_checkout]['card_expires_on(1i)']}"
+ #   li2 = "-#{params[:order_checkout]['card_expires_on(2i)']}"
+ #   li3 = "-#{params[:order_checkout]['card_expires_on(3i)']}"
+ #   card_exp_date = li1+li2+li3
+  @order = OrderCheckout.create(Order_id: params[:order_id],
+                                first_name: params[:first_name] ,
+                                last_name:  params[:last_name] ,
+                                email: params[:payer_email] ,
+                                adress:  params[:adress_street] ,
+                                city: params[:adress_city] ,
+                                state:params[:adress_state] ,
+                                zip: params[:adress_zip] ,
+                                bill_name:params[:adress_name] ,
+                                bill_adress:  params[:adress_street] ,
+                                bill_city: params[:adress_city] ,
+                                bill_state:  params[:adress_state] ,
+                                bill_zip: params[:adress_zip] ,  
+                                instructions: params.to_s
+                                )
+    
+   @Order = Order.find(params[:order_id])
+    @OrderCheckout = @Order.order_checkouts.last
+    
+
+         @OrderCheckout.update_attributes(purchased_at: DateTime.now  )     
+       @Order.order_items.each do |item|
+         Item.find(item.item_id) do |itemIn|
+           OrderCheckout.find(@OrderCheckout.id).checkout_paid_items.create(title: itemIn.title, name: itemIn.name, price:itemIn.price, body: itemIn.body)
+          end
+      end   
+    
+      current_order.order_items.destroy_all
+    
+=end
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   end
   
@@ -160,10 +223,16 @@ class OrderCheckoutsController < ApplicationController
   private
   
   def clean_params
-    $params = ''
-    $current_order = ''
+  
     
   end
+  
+  
+  
+  
+  
+  
+  
   
   
   

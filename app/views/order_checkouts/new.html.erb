@@ -4,11 +4,16 @@
 
 <div class="col-10" style="display:none;" id="instore-form">
   
-  <div class="col-12" style="margin:30px;">
-  <%= link_to paypal_path, method: :post do %>
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" class="center" style=" float:right; width:180px; height:60px;"><br>
+  <div class="col-11 col-p-11" style="margin:30px;">
+    
+  <%= link_to paypal_path, method: :post do %> 
+  <img src="<%request.base_url%>/assets/images/paypal.gif" class="center" style=" float:right; width:180px; height:60px;"><br>
     <%end%>
+  <img src="<%request.base_url%>/assets/images/hand.gif" class="center" style="float:right; width:40px; height:40px;">
 </div>
+  
+<!--   right-aside space for image-->
+  <div class="col-1 col-p-1"></div>
   
  
   
@@ -17,7 +22,7 @@
   
 <%= form_for OrderCheckout.new, :url => {:controller => 'order_checkouts', :action => 'create',  :method => 'post'} do |f| %>
 
-<h3>Shipping Adress</h3>
+<h3>Shipping Address</h3>
   
   <p>
     <%= f.label :first_name %><br />
@@ -118,6 +123,7 @@
       <div class="col-12 vhcenters seebox center">
     <button class="center" id="instore-checkout-button" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; ">in-store checkout</button><br>
     <button class="center" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; " >paypal express</button><br>
+        <img src="<%request.base_url%>/assets/images/paypal.gif">
       </div>
 </div>
 

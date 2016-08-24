@@ -20,7 +20,9 @@ def admin
        end
 end
  
- 
+ def params_info
+   params
+ end
   
   def current_order
     #if !Order.where(id: session[:order_id]) == nil && !session[:order_id].nil?
