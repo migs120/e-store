@@ -115,7 +115,7 @@ class OrderCheckoutsController < ApplicationController
       current_order.order_items.each_with_index do |item, index|
                         values.merge!({
                                       # :add => "#{index+1}",  
-                                       :"amount_#{index+1}" => item.total_price.to_s,
+                                       :"amount_#{index+1}" => item.unit_price.to_s,
                                        :"item_name_#{index+1}"=> Item.find(item.item_id).name,
                                        :"item_number_#{index+1}"=> item.item_id,
                                        :"quantity_#{index+1}"=> item.quantity,
@@ -167,7 +167,9 @@ class OrderCheckoutsController < ApplicationController
    @Order = Order.find(params[:order_id])
     @OrderCheckout = @Order.order_checkouts.last
     
-  #@OrderCheckout.order_checkout_transactions.create!(:action => "purchase", :amount => params[:payment_gross], :response => params.to_s)
+ # OrderCheckoutTransaction.create!(order_checkout_id:params[:order_id],success: true, params: params.to_s, authorization: params[:payment_status],  :amount => params[:payment_gross]).default_connection_handler
+    @OrderCheckout.order_checkout_transactions.create!(success: true, params: params, authorization: params[:payment_status],  :amount => params[:payment_gross]).default_connection_handler
+    #order_checkout_transactions.palreturn(params)
          @OrderCheckout.update_attributes(purchased_at: DateTime.now  )     
        @Order.order_items.each do |item|
          Item.find(item.item_id) do |itemIn|
@@ -175,7 +177,8 @@ class OrderCheckoutsController < ApplicationController
           end
       end   
     
-      current_order.order_items.destroy_all
+      
+    @Order.order_items.destroy_all
     
 #=end
     
