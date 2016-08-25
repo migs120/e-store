@@ -14,6 +14,9 @@ class OrderCheckoutTransaction < ActiveRecord::Base
     self.params        = {}
   end
   
+#  def palretun(params)
+ #   OrderCheckoutTransaction.create(amoutn: 7600)
+ # end
   
   
 end
