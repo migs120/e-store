@@ -121,9 +121,11 @@
 </div>
 <div id="pay-type" class="col-10 vhcenterp see box" style="height:100%;">
       <div class="col-12 vhcenters seebox center">
-    <button class="center" id="instore-checkout-button" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; ">in-store checkout</button><br>
-    <button class="center" style="background-color:lightgrey; height:30px; padding:5px; border:solid grey; margin:5px; " >paypal express</button><br>
+    <button class="center new-checkout-b" id="instore-checkout-button" style="">in-store checkout</button><br>
+        <%= link_to paypal_path, method: :post do %> 
+    <button class="center new-checkout-b" style="" >paypal express</button><br>
         <img src="<%request.base_url%>/assets/images/paypal.gif">
+        <%end%>
       </div>
 </div>
 
