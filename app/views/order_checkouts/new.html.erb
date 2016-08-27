@@ -40,7 +40,7 @@
 
  <p>
     <%= f.label :phone %><br />
-    <%= f.text_field :phone , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.phone : ''  %>
+    <%= f.text_field :phone , placeholder: current_order.order_checkouts.any? ? current_order.order_checkouts.last.phone : '' %>
   </p>
 
  <p>
