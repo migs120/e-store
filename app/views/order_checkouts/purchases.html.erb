@@ -10,53 +10,72 @@ table, th, tr, td { border:solid 1px;}
           <!--   center-div -->
           <div class="col-10 seebox">
 
-                    <h2>purchases.html.erb</h2>
-                    <% OrderCheckout.all.each do |this|%>
-                        <% if this.purchased_at && !this.paid_shipped_n_done %>
-                               
-                                         
-                                     <p><%= this.inspect %></p><br><br>
-                                     <p>
-                                        order_id: <%= this.Order_id %><br>
-                                        first_name: <%= this.first_name %><br>
-                                        last_name: <%= this.last_name %><br>
-                                        address: <%= this.adress %><br>
-                                        city: <%= this.city %><br>
-                                     </p>
+             <h2>purchases.html.erb</h2>
+                    
+             <% OrderCheckout.all.each.with_index do |this, index = 1|%>
+                   
+             <% if this.purchased_at && !this.paid_shipped_n_done %>
             
+             <div id="order_checkout-<%=this.id%>">
+               
+                          <table style="width:100%;">
+                            <tr>
+                              <th colspan="3">Order Checkout <%=index%></th>
+                            </tr>
+                            <tr>
+                              <th>key</th>
+                             <th>value</th>
+                            </tr>
+                            <% this.attributes.each do |j|%>
+                            <tr>
+                              <td><%=j[0]%></td>
+                              <td><%=j[1]%></td>
+                            </tr>
+                            <%end%>
+                          </table>
             
-                                            <table style="width:100%;">
-                                              <tr>
-                                                <th colspan="3">Order Checkout</th>
-
-                                              </tr>
-                                              <tr>
-                                                <th>key</th>
-                                               <th>value</th>
-                                              </tr>
-                                              <% OrderCheckout.find(this.id).attributes.each do |j|%>
-                                              <tr>
-                                                <td><%=j[0]%></td>
-                                                <td><%=j[1]%></td>
-
-                                              </tr>
-                                              <%end%>
-
-                                            </table>
-            
-            
-            
-            
-            
-            
-                                     
-                                     
+                     
                                            
-                                     <p><%= this.order_checkout_transactions.inspect%></p>
-                                  
-                                    <h4>items bought</h4>
-                                         <%this.checkout_paid_items.each do |item|%>
-                                             <p> <%= item.inspect%></p><br><br>
+                        <% this.order_checkout_transactions.each do |oct|%>
+                          <table style="width:100%;">
+                            <tr>
+                              <th colspan="3">Order Checkout Transaction</th>
+                            </tr>
+                            <tr>
+                              <th>key</th>
+                             <th>value</th>
+                            </tr>
+                            <% oct.attributes.each do |j|%>
+                            <tr>
+                              <td><%=j[0]%></td>
+                              <td><%=j[1]%></td>
+                            </tr>
+                            <%end%>
+                          </table>
+                            <%end%>
+            
+            
+                         <h4>items bought</h4>
+                         <%this.checkout_paid_items.each do |item|%>
+                                                 
+            
+                           <table style="width:100%;">
+                              <tr>
+                                <th colspan="3">Paid Item</th>
+                              </tr>
+                              <tr>
+                                <th>key</th>
+                               <th>value</th>
+                              </tr>
+                             <%item.attributes.each do |itema|%>
+                              <tr>
+                                <td><%=itema[0]%></td>
+                                <td><%=itema[1]%></td>
+                              </tr>
+                             <%end%>
+                            </table>
+                                      
+            
                                          <%end%>
                                   
                                     <br>
@@ -65,14 +84,15 @@ table, th, tr, td { border:solid 1px;}
                                     <p>===============================================================================</p>
                                  </div>
 
-                        <%end%>
+                   <%end%>
   
                           <!--   loop ends -->
-                    <%end%>
-
-            </div>
+               <%end%>
+</div>
+  
+</div>
   
             <!--   right-side space -->
             <div class="col-1 seebox"></div> 
-</div> 
+
 <%end%>
