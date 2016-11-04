@@ -107,7 +107,15 @@
      
 
 <!-- <script src="assets/js/application.js"></script> -->
-
+ <script>
+ console.log(
+    "current order = <%= current_order.inspect%>"
+    +" \n\n session[:session_id]=<%= session[:session_id]%>"
+    +"\n\n session[:order_id] =<%= session[:order_id]%>, "
+    +"\n\n current order"
+                    )
+                    
+    </script>  
 </body>
 </html>
 
