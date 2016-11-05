@@ -27,12 +27,15 @@ end
   def current_order
     #if !Order.where(id: session[:order_id]) == nil && !session[:order_id].nil?
     if !session[:order_id].nil?
+   #if Order.where(session_id: $ab).last.session_id == $ab
       #if Order.where(id: Order.find(session[:order_id]).id)
       Order.find(session[:order_id])
+     # Order.where(session_id: $ab).last
       #end
     
     else
-      Order.new
+        
+      Order.create()
     end
   end
  
